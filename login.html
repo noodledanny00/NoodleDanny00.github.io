@@ -1,153 +1,392 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Login — Glashan Gardening Club</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <title>Login — podcast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0078D4 0%, #005BA1 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        main {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 520px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .social-auth-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .social-auth-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            width: 100%;
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        .social-auth-btn:hover {
+            background-color: #f9f9f9;
+            border-color: #d0d0d0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .social-auth-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .social-auth-btn.apple {
+            background-color: #000000;
+            color: #ffffff;
+            border-color: #000000;
+        }
+
+        .social-auth-btn.apple:hover {
+            background-color: #1a1a1a;
+            border-color: #1a1a1a;
+        }
+
+        .social-auth-btn.microsoft {
+            background-color: #f25022;
+            color: #ffffff;
+            border-color: #f25022;
+        }
+
+        .social-auth-btn.microsoft:hover {
+            background-color: #da3b1a;
+            border-color: #da3b1a;
+        }
+
+        .social-auth-btn.github {
+            background-color: #1f2937;
+            color: #ffffff;
+            border-color: #1f2937;
+        }
+
+        .social-auth-btn.github:hover {
+            background-color: #111827;
+            border-color: #111827;
+        }
+
+        .social-auth-btn.discord {
+            background-color: #5865f2;
+            color: #ffffff;
+            border-color: #5865f2;
+        }
+
+        .social-auth-btn.discord:hover {
+            background-color: #4752c4;
+            border-color: #4752c4;
+        }
+
+        .social-auth-btn.spotify {
+            background-color: #1db954;
+            color: #ffffff;
+            border-color: #1db954;
+        }
+
+        .social-auth-btn.spotify:hover {
+            background-color: #1ed760;
+            border-color: #1ed760;
+        }
+
+        .social-auth-btn.twitch {
+            background-color: #9146ff;
+            color: #ffffff;
+            border-color: #9146ff;
+        }
+
+        .social-auth-btn.twitch:hover {
+            background-color: #7928d9;
+            border-color: #7928d9;
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: #e0e0e0;
+        }
+
+        .separator span {
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-row label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-row input {
+            padding: 10px 12px;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .form-row input:focus {
+            outline: none;
+            border-color: #0078D4;
+            box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1);
+        }
+
+        .form-row.checkbox {
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-row.checkbox label {
+            margin: 0;
+            font-weight: 400;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .form-row.checkbox input {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            cursor: pointer;
+        }
+
+        .form-row button {
+            padding: 11px 16px;
+            background-color: #0078D4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+        }
+
+        .form-row button:hover {
+            background-color: #005BA1;
+            box-shadow: 0 4px 12px rgba(0, 78, 161, 0.2);
+        }
+
+        .form-row button:active {
+            transform: scale(0.98);
+        }
+
+        #message {
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        #message.success {
+            background-color: #e6f4ea;
+            color: #137333;
+            border: 1px solid #a8d5ba;
+        }
+
+        #message.error {
+            background-color: #fce8e6;
+            color: #c5221f;
+            border: 1px solid #f1b0ac;
+        }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .footer-link a {
+            font-size: 13px;
+            color: #0078D4;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link a:hover {
+            color: #005BA1;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    >    <div id="userbar" aria-live="polite"></div>
     <main>
-        <h1>Login</h1>
+        <h1>Welcome Back</h1>
+        <p class="subtitle">Log in to your account</p>
+        
+        <!-- Social Authentication Buttons -->
+        <div class="social-auth-container">
+            <button class="social-auth-btn google" id="googleLogin" onclick="handleGoogleLogin(event)">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#1f2937" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Google
+            </button>
 
-        <form id="signupForm" class="signup-form" novalidate>
+            <button class="social-auth-btn apple" id="appleLogin" onclick="handleAppleLogin(event)">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.38-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.12-.38C2.79 15.25 3.51 7.59 9.05 7.31c1.35.05 2.29.87 3.08.9.78-.03 1.69-.98 2.88-.9 1.19.08 2.06.71 2.56 1.78-2.33 1.37-1.93 4.19.12 4.9-1.1 2.08-2.45 2.99-4.64 3.29zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                </svg>
+                Apple
+            </button>
+
+            <button class="social-auth-btn microsoft" id="microsoftLogin" onclick="handleMicrosoftLogin(event)">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M2.5 2.5H10.5V10.5H2.5z"/>
+                    <path d="M13.5 2.5H21.5V10.5H13.5z"/>
+                    <path d="M2.5 13.5H10.5V21.5H2.5z"/>
+                    <path d="M13.5 13.5H21.5V21.5H13.5z"/>
+                </svg>
+                Microsoft
+            </button>
+
+            <button class="social-auth-btn github" id="githubLogin" onclick="handleGithubLogin(event)">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+            </button>
+
+            <button class="social-auth-btn discord" id="discordLogin" onclick="handleDiscordLogin(event)">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M20.317 4.37a19.81 19.81 0 0 0-4.885-1.515.074.074 0 0 0-.078.037c-.211.397-.444.909-.607 1.313-1.6-.24-3.2-.24-4.8 0-.163-.41-.396-.922-.608-1.313a.077.077 0 0 0-.078-.037A19.76 19.76 0 0 0 3.684 4.37a.07.07 0 0 0-.032.028C1.933 6.77 1.087 9.15 1.106 11.477a.082.082 0 0 0 .032.055c2.004 1.465 3.951 2.35 5.861 2.938a.08.08 0 0 0 .087-.023c.462-.599.873-1.232 1.226-1.885a.077.077 0 0 0-.042-.106 12.88 12.88 0 0 1-1.836-.874.076.076 0 0 0-.012-.125c.123-.092.246-.188.365-.289a.077.077 0 0 1 .031-.131c3.852-2.779 8.493-2.779 12.308 0a.077.077 0 0 1 .032.129c.119.101.242.197.366.29a.077.077 0 0 0-.011.125 12.797 12.797 0 0 1-1.839.875.077.077 0 0 0-.041.106c.353.654.764 1.287 1.226 1.886a.077.077 0 0 0 .086.023c1.914-.638 3.861-1.523 5.866-2.938a.077.077 0 0 0 .032-.055c.127-2.312-.213-4.382-2.053-6.151a.068.068 0 0 0-.031-.028zM8.02 15.331c-1.182 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.955 2.419-2.157 2.419zm7.975 0c-1.182 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419z"/>
+                </svg>
+                Discord
+            </button>
+
+            <button class="social-auth-btn spotify" id="spotifyLogin" onclick="handleSpotifyLogin(event)">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-12.008-1.38-.48.12-1.021-.18-1.14-.66-.12-.486.18-1.02.66-1.14 4.26-1.26 9.541-.68 13.082 1.566.359.229.522.809.301 1.22zm.140-3.451c-3.746-2.27-9.621-2.57-13.382-1.421-.5.143-1.071-.15-1.213-.646-.143-.502.15-1.074.648-1.213 4.568-1.325 10.885-.959 15.303 1.676.466.28.684.926.404 1.391-.281.466-.925.684-1.391.404z"/>
+                </svg>
+                Spotify
+            </button>
+
+            <button class="social-auth-btn twitch" id="twitchLogin" onclick="handleTwitchLogin(event)">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M2 2v17h6v3l4-3h5l7-7V2H2zm15 10l-3 3h-4l-3 3v-3H5V4h12v8z"/>
+                </svg>
+                Twitch
+            </button>
+        </div>
+
+        <div class="separator">
+            <span>or</span>
+        </div>
+
+        <form id="loginForm" class="login-form" novalidate>
             <div class="form-row">
-                <label for="email">Email (Use ONLY Personal Email)</label>
+                <label for="email">Email Address</label>
                 <input id="email" name="email" type="email" required placeholder="you@example.com">
             </div>
 
             <div class="form-row">
-                <label for="password">Password (Don't Reuse the Same Password)</label>
-                <input id="password" name="password" type="password" minlength="6" required placeholder="At least 8 characters">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" required placeholder="Enter your password">
             </div>
 
-            <div class="form-row">
-                <label for="confirm">Confirm password</label>
-                <input id="confirm" name="confirm" type="password" required placeholder="Repeat your password">
-            </div>
-            
             <div class="form-row checkbox">
-                <label for="consent">
-                    <input id="consent" name="consent" type="checkbox" required>
-                    I agree to the club rules and that my information may be used to contact me about events.
-                </label>
+                <input id="remember" name="remember" type="checkbox">
+                <label for="remember">Remember me</label>
             </div>
 
             <div class="form-row">
-                <button type="submit">Sign up</button>
+                <button type="submit">Log In</button>
             </div>
         </form>
 
-        <div id="message" class="success-message" aria-live="polite" hidden></div>
+        <div id="message" aria-live="polite" hidden></div>
 
-        <p><a href="index.html">← Back to Home</a></p>
+        <div class="footer-link">
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+            <p><a href="index.html">← Back to Home</a></p>
+        </div>
     </main>
 
-    <script>
-        // userbar: show logged-in user or login/signup links (same logic as index.html)
-        function escapeHtml(s) {
-            return String(s).replace(/[&<>"'`]/g, function (c) {
-                return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;","`":"&#96;"}[c];
-            });
-        }
-
-        function renderUserBar() {
-            const container = document.getElementById('userbar');
-            if (!container) return;
-            const raw = localStorage.getItem('ccc_current_user');
-            if (raw) {
-                try {
-                    const user = JSON.parse(raw);
-                    const name = user && user.name ? escapeHtml(user.name) : escapeHtml(user.email || '');
-                    container.innerHTML = `<div class="userbar">Welcome, <strong>${name}</strong> <button id="logoutBtn">Log out</button></div>`;
-                    const btn = document.getElementById('logoutBtn');
-                    if (btn) btn.addEventListener('click', function () {
-                        localStorage.removeItem('ccc_current_user');
-                        renderUserBar();
-                        // optionally show the sign-up form again
-                        const form = document.getElementById('signupForm'); if (form) form.style.display = '';
-                    });
-                    return;
-                } catch (e) {
-                    // fall through to signed-out state
-                }
-            }
-            container.innerHTML = `<div class="userbar"><a href="Login.html" class="button">Log in</a> <a href="SignUp.html" class="button">Sign up</a></div>`;
-        }
-
-        document.addEventListener('DOMContentLoaded', renderUserBar);
-
-        (function () {
-            const form = document.getElementById('signupForm');
-            const message = document.getElementById('message');
-
-            function showMessage(text) {
-                message.hidden = false;
-                message.textContent = text;
-            }
-
-            async function hashString(str) {
-                // Use SubtleCrypto to compute a SHA-256 hash for demo purposes
-                try {
-                    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-                    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-                } catch (e) {
-                    // Fallback: very small and insecure fallback for environments without SubtleCrypto
-                    return btoa(str);
-                }
-            }
-
-            form.addEventListener('submit', async function (e) {
-                e.preventDefault();
-                // basic client-side validation
-                const name = form.name.value.trim();
-                const email = form.email.value.trim();
-                const pwd = form.password.value;
-                const confirm = form.confirm.value;
-                const consent = form.consent.checked;
-
-                if (!name || !email || !pwd || !confirm) {
-                    showMessage('Please complete all required fields.');
-                    return;
-                }
-
-                if (pwd.length < 6) {
-                    showMessage('Password must be at least 6 characters.');
-                    return;
-                }
-
-                if (pwd !== confirm) {
-                    showMessage('Passwords do not match.');
-                    return;
-                }
-
-                if (!consent) {
-                    showMessage('You must agree to the club rules to sign up.');
-                    return;
-                }
-
-                // Simulate a successful signup (replace with real submission)
-                const safeName = name.split('\n')[0];
-
-                // Hash the password before storing (demo only - do not use this for production!)
-                const pwHash = await hashString(pwd);
-
-                // Store record with hashed password
-                try {
-                    const entrants = JSON.parse(localStorage.getItem('ccc_signups') || '[]');
-                    entrants.push({ name: safeName, email: email, pwHash: pwHash, created: new Date().toISOString() });
-                    localStorage.setItem('ccc_signups', JSON.stringify(entrants));
-                } catch (err) {
-                    // ignore storage errors
-                }
-
-                showMessage(`Thanks, ${safeName}! We'll contact you at ${email}.`);
-                form.reset();
-                form.style.display = 'none';
-            });
-        })();
-    </script>
+    <script src="login.js"></script>
 </body>
 </html>

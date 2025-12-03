@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,21 +5,30 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Sign Up — Glashan Gardening Club</title>
     <link rel="stylesheet" href="mystyle.css">
+    <style>
+        /* Minimal inline tweaks so page looks good without changing mystyle.css */
+        body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:20px;background:#fbfbfb}
+        header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+        #logo{height:56px}
+        main{max-width:720px;margin:0 auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.06)}
+        .form-row{margin-bottom:12px}
+        label{display:block;margin-bottom:6px}
+        input[type="text"],input[type="email"],input[type="password"],input[type="number"]{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px}
+        button{padding:10px 14px;border-radius:6px;border:0;background:#2b7cff;color:#fff;cursor:pointer}
+        .social-row{display:flex;gap:8px;margin-top:12px}
+        .social-row button{flex:1;background:#f5f5f5;color:#111;border:1px solid #ddd}
+        .userbar{display:flex;gap:8px;align-items:center}
+        .userbar .button{padding:6px 10px;border-radius:6px;background:#eee;text-decoration:none;color:inherit}
+        #message{margin-top:12px;padding:8px;border-radius:6px}
+    </style>
 </head>
 <body>
-    >    <div id="userbar" aria-live="polite"></div>
+    <header>
+        <img id="logo" src="images/logo.png" alt="Glashan Gardening Club logo" onerror="this.style.display='none'">
+        <div id="userbar" aria-live="polite"></div>
+    </header>
     <main>
         <h1>Sign Up</h1>
-        <div class="authentication__separator">
-<hr>
-<div class="authentication__separator__text">Connect with</div>
-<hr>
-</div>
-<div tabindex="0" role="button" aria-labelledby="button-label" class="nsm7Bb-HzV7m-LgbsSe  hJDwNd-SxQuSe MFS4be-v3pZbf-Ia7Qfc MFS4be-Ia7Qfc uaxL4e-RbRzK" style="width:138px; max-width:60px; min-width:min-content;"><div class="nsm7Bb-HzV7m-LgbsSe-MJoBVe"></div><div class="nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb "><div class="nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf"><div class="nsm7Bb-HzV7m-LgbsSe-Bz112c"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="LgbsSe-Bz112c"><g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g></svg></div></div><span class="nsm7Bb-HzV7m-LgbsSe-BPrWId">Sign in</span><span class="L6cTce" id="button-label">Sign in with Google. Opens in new tab</span></div></div>
-<link><link>
-
-
-
 
         <form id="signupForm" class="signup-form" novalidate>
             <div class="form-row">
@@ -35,7 +43,7 @@
 
             <div class="form-row">
                 <label for="password">Password (Don't Reuse the Same Password)</label>
-                <input id="password" name="password" type="password" minlength="6" required placeholder="At least 8 characters">
+                <input id="password" name="password" type="password" minlength="8" required placeholder="At least 8 characters">
             </div>
 
             <div class="form-row">
@@ -49,8 +57,8 @@
             </div>
             
             <div class="form-row">
-                <label for="Phone Number">Phone Number </label>
-                <input id="Phone Number" name="Phone Number" type="tel" required min="1" placeholder=>
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="(optional)">
             </div>
 
             <div class="form-row checkbox">
@@ -67,8 +75,149 @@
 
         <div id="message" class="success-message" aria-live="polite" hidden></div>
 
+        <hr>
+        <h3>Or sign up with</h3>
+        <div class="social-row">
+            <button id="googleSignup" type="button">Google</button>
+            <button id="appleSignup" type="button">Apple</button>
+            <button id="microsoftSignup" type="button">Microsoft</button>
+        </div>
+        <div class="social-row">
+            <button id="discordSignup" type="button">Discord</button>
+            <button id="twitchSignup" type="button">Twitch</button>
+            <button id="spotifySignup" type="button">Spotify</button>
+        </div>
+
         <p><a href="index.html">← Back to Home</a></p>
     </main>
 
+    <!-- Load the clean social handlers so buttons work (placeholders) -->
+    <script src="signup.clean.js"></script>
 
-    
+    <script>
+        // userbar: show logged-in user or login/signup links (same logic as index.html)
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"'`]/g, function (c) {
+                return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;","`":"&#96;"}[c];
+            });
+        }
+
+        function renderUserBar() {
+            const container = document.getElementById('userbar');
+            if (!container) return;
+            const raw = localStorage.getItem('ccc_current_user');
+            if (raw) {
+                try {
+                    const user = JSON.parse(raw);
+                    const name = user && user.name ? escapeHtml(user.name) : escapeHtml(user.email || '');
+                    container.innerHTML = `<div class="userbar">Welcome, <strong>${name}</strong> <button id="logoutBtn">Log out</button></div>`;
+                    const btn = document.getElementById('logoutBtn');
+                    if (btn) btn.addEventListener('click', function () {
+                        localStorage.removeItem('ccc_current_user');
+                        renderUserBar();
+                        const form = document.getElementById('signupForm'); if (form) form.style.display = '';
+                    });
+                    return;
+                } catch (e) {
+                    // fall through to signed-out state
+                }
+            }
+            container.innerHTML = `<div class="userbar"><a href="login.html" class="button">Log in</a> <a href="signup.html" class="button">Sign up</a></div>`;
+        }
+
+        document.addEventListener('DOMContentLoaded', renderUserBar);
+
+        (function () {
+            const form = document.getElementById('signupForm');
+            const message = document.getElementById('message');
+
+            function showMessage(text) {
+                message.hidden = false;
+                message.textContent = text;
+            }
+
+            async function hashString(str) {
+                try {
+                    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+                    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+                } catch (e) {
+                    return btoa(str);
+                }
+            }
+
+            if (form) {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    // basic client-side validation
+                    const name = form.name.value.trim();
+                    const email = form.email.value.trim();
+                    const pwd = form.password.value;
+                    const confirm = form.confirm.value;
+                    const consent = form.consent.checked;
+
+                    if (!name || !email || !pwd || !confirm) {
+                        showMessage('Please complete all required fields.');
+                        return;
+                    }
+
+                    if (pwd.length < 6) {
+                        showMessage('Password must be at least 6 characters.');
+                        return;
+                    }
+
+                    if (pwd !== confirm) {
+                        showMessage('Passwords do not match.');
+                        return;
+                    }
+
+                    if (!consent) {
+                        showMessage('You must agree to the club rules to sign up.');
+                        return;
+                    }
+
+                    const safeName = name.split('\n')[0];
+                    const pwHash = await hashString(pwd);
+
+                    try {
+                        const entrants = JSON.parse(localStorage.getItem('ccc_signups') || '[]');
+                        entrants.push({ name: safeName, email: email, pwHash: pwHash, created: new Date().toISOString() });
+                        localStorage.setItem('ccc_signups', JSON.stringify(entrants));
+                    } catch (err) {
+                        // ignore storage errors
+                    }
+
+                    // Save current user for userbar demo
+                    localStorage.setItem('ccc_current_user', JSON.stringify({ name: safeName, email: email }));
+                    renderUserBar();
+
+                    showMessage(`Thanks, ${safeName}! We'll contact you at ${email}.`);
+                    form.reset();
+                    form.style.display = 'none';
+                });
+            }
+
+            // Wire social buttons to the placeholder handlers loaded earlier (signup.clean.js)
+            const socialIds = ['googleSignup','appleSignup','microsoftSignup','discordSignup','twitchSignup','spotifySignup'];
+            socialIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                // Map element id to handler name (camel-case)
+                const handlerMap = {
+                    googleSignup: 'handleGoogleSignup',
+                    appleSignup: 'handleAppleSignup',
+                    microsoftSignup: 'handleMicrosoftSignup',
+                    discordSignup: 'handleDiscordSignup',
+                    twitchSignup: 'handleTwitchSignup',
+                    spotifySignup: 'handleSpotifySignup'
+                };
+                const fnName = handlerMap[id];
+                if (typeof window[fnName] === 'function') {
+                    el.addEventListener('click', window[fnName]);
+                } else {
+                    el.addEventListener('click', function (e) { e.preventDefault(); alert(fnName + ' not available'); });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

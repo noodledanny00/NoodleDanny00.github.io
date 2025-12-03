@@ -4,20 +4,40 @@
         <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>Podcast</title>
-        <link rel="stylesheet" href="style.css"> 
-    </head> 
-    <body> 
-        
-        
+        <!-- Preload stylesheet for faster first paint; falls back when JS disabled -->
+        <link rel="preload" href="style.css" as="style" onload="this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="style.css"></noscript>
+        <meta name="theme-color" content="#0078D4">
+    </head>
+    <body>
+       
+        <header id="navbar">
+            <div class="nav-left">
+                <a href="index.html" class="brand">
+                    <span class="brand-name">Podcast</span>
+                </a>
+            </div>
+            <nav class="nav-right" aria-label="Main navigation">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="Listen To Our Podcast.html" class="nav-link">Listen</a>
+                <a href="signup.html" class="nav-link">Sign Up</a>
+                <a href="login.html" class="nav-link">Login</a>
+            </nav>
+        </header>
 
-    <img src="Podcast Happy Guy.jpg" width="100" alt="Podcast Happy Guy" id="logo"> 
-<br>
+        <main id="content">
+            <section class="hero">
+                <h1>Welcome to our Podcast</h1>
+                <p>Listen, learn, and enjoy.</p>
+                <div class="hero-actions">
+                    <a href="Listen To Our Podcast.html" class="button">
+                        <img src="Podast guy.png" alt="Podcast icon" class="btn-icon" width="28" height="28" loading="lazy" decoding="async">
+                        <span>Listen Now</span>
+                    </a>
+                    <a href="signup.html" class="button">Get Started</a>
+                </div>
+            </section>
+        </main>
 
-
-        
-<a href="signup.html" class="button">Sign Up</a> 
-<a href="login.html" class="button">login</a>
-<a href="Listen To Our Podcast.html" class="button">Listen To Our Podcast</a>
-
-</body>
+    </body>
 </html>
